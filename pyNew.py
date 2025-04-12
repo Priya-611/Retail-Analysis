@@ -51,4 +51,33 @@ print(df_no_outliers)
 print(df_no_outliers.info())
 print(df_no_outliers.describe())
 
+#EDA
+
+
+#OBJECTIVES:->
+#1 Examine monthly or yearly patterns in sales to identify peak periods and seasonal trends.
+
+df_no_outliers["Year"]=df_no_outliers["Order Date"].dt.year
+df_no_outliers["Month"]=df_no_outliers["Order Date"].dt.month_name()
+#print(df_no_outliers)
+
+
+month_order = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+gb_m=df_no_outliers.groupby("Month")["Profit"].sum().reindex(month_order).reset_index()
+plt.figure(figsize=(10,6))
+sns.lineplot(x="Month",y="Profit",data=gb_m,color='m')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.title('Analyze Profit Trends Over Month')
+plt.show(block=False)
+
+gb_y=df_no_outliers.groupby("Year")["Profit"].sum().reset_index()
+plt.figure(figsize=(10,6))
+sns.lineplot(x="Year",y="Profit",data=gb_y,color='r')
+plt.grid(True)
+plt.title('Analyze Profit Trends Over Year')
+plt.show()
+
+
 
