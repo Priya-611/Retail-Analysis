@@ -94,3 +94,23 @@ plt.grid(False)
 plt.show()
 
 
+
+
+#3 Identifying return frequency by category to assess business impact.
+
+def func(val):
+    if(val=="Yes"):
+        return 1
+    else:
+        return 0
+
+df_no_outliers["Returned_flag"]=df_no_outliers["Returned"].apply(func)
+df_ret=df_no_outliers.groupby("Category")["Returned_flag"].sum()
+plt.pie(df_ret.values,labels=df_ret.index,autopct="%.2f%%",colors=["#66c2a5", "#fc8d62", "#8da0cb"],explode=[0,0,0.08],pctdistance=0.5)
+plt.title("Distribution of Returned Orders by Category")
+plt.legend(loc="upper right",bbox_to_anchor=(2,2))
+plt.show()
+
+
+
+
