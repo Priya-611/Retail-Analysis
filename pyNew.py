@@ -79,5 +79,18 @@ plt.grid(True)
 plt.title('Analyze Profit Trends Over Year')
 plt.show()
 
+#2 average profit per order across different regions to identify high and low-performing areas.
+
+
+
+region_p=df_no_outliers.groupby("Region")["Profit"].mean().reset_index()
+br=sns.barplot(x="Region",y="Profit",data=region_p,hue="Region",palette='dark:pink',legend=False)
+br.bar_label(br.containers[0],fmt='%.2f')
+br.bar_label(br.containers[1],fmt='%.2f')
+br.bar_label(br.containers[2],fmt='%.2f')
+br.bar_label(br.containers[3],fmt='%.2f')
+plt.title('Average Sales across Region')
+plt.grid(False)
+plt.show()
 
 
