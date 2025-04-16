@@ -124,4 +124,29 @@ plt.xlabel("Days")
 plt.ylabel("Shipping Duration")
 plt.show()
 
+#5 Evaluating the performance of different customer segments (Consumer, Corporate, Home Office) based on sales, quantity, and profit.
+
+df_seg=df_no_outliers.groupby("Segment")[["Sales","Profit","Quantity"]].sum().reset_index()
+plt.figure(figsize=(16,6))
+
+plt.subplot(1,3,1)
+sns.barplot(x="Segment",y="Sales",data=df_seg,hue="Segment",palette='dark:Yellow')
+plt.xticks(rotation=45)
+plt.title("Segment by Sales")
+
+
+plt.subplot(1,3,2)
+sns.barplot(x="Segment",y="Quantity",hue="Segment",data=df_seg,palette='dark:orange')
+plt.xticks(rotation=45)
+plt.title("Segment by Quantity")
+
+plt.subplot(1,3,3)
+sns.barplot(x="Segment",y="Profit",hue="Segment",data=df_seg,palette='dark:purple')
+plt.xticks(rotation=45)
+plt.title("Segment by Profit")
+
+plt.suptitle("Segment-Wise Customer Behaviour")
+plt.tight_layout()
+plt.show()
+
 
