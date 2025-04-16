@@ -150,3 +150,9 @@ plt.tight_layout()
 plt.show()
 
 
+#Heat Map
+
+sns.heatmap(df_no_outliers.corr(numeric_only=True),annot=True)
+plt.title("Relationship Between Sales Variables")
+plt.show()
+
