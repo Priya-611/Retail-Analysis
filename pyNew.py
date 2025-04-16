@@ -114,3 +114,14 @@ plt.show()
 
 
 
+#4 Analyzing shipping time to understand delivery performance and customer experience.
+
+df_no_outliers["Shipping Duration"] = (df_no_outliers["Ship Date"] - df_no_outliers["Order Date"]).dt.days
+sns.histplot(x="Shipping Duration",data=df_no_outliers, bins=8, kde=True,color='#BA55D3')
+
+plt.title("Distribution of Shipping Duration")
+plt.xlabel("Days")
+plt.ylabel("Shipping Duration")
+plt.show()
+
+
